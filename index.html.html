@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toshdeluxe Services</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #0a0a2a 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            padding: 30px 0;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #00b3ff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #00b3ff;
+            text-shadow: 0 0 20px rgba(0, 179, 255, 0.7);
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+        
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        nav a:hover {
+            color: #00b3ff;
+            text-shadow: 0 0 10px rgba(0, 179, 255, 0.5);
+        }
+        
+        nav a.active {
+            background: linear-gradient(135deg, #00b3ff 0%, #0088cc 100%);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 179, 255, 0.4);
+        }
+        
+        .page {
+            display: none;
+            padding: 60px 0;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 179, 255, 0.1) 0%, rgba(0, 136, 204, 0.1) 100%);
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00b3ff 0%, #0088cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 179, 255, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3em;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .service-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(0, 179, 255, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: #00b3ff;
+            box-shadow: 0 0 30px rgba(0, 179, 255, 0.2);
+        }
+        
+        .service-card h3 {
+            color: #00b3ff;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .service-item:last-child {
+            border-bottom: none;
+        }
+        
+        .service-name {
+            color: #ffffff;
+            font-weight: 500;
+            flex: 1;
+        }
+        
+        .price {
+            color: #00b3ff;
+            font-weight: 600;
+            background: rgba(0, 179, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 179, 255, 0.3);
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .contacts-content {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid rgba(0, 179, 255, 0.3);
+            text-align: center;
+        }
+        
+        .contacts-content h2 {
+            color: #00b3ff;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        
+        .contact-item {
+            margin: 25px 0;
+            font-size: 1.2em;
+        }
+        
+        .contact-item a {
+            color: #00b3ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .contact-item a:hover {
+            text-shadow: 0 0 15px rgba(0, 179, 255, 0.7);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 2px solid #00b3ff;
+            margin-top: 60px;
+        }
+        
+        .neon-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 179, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            nav a {
+                padding: 8px 16px;
+                font-size: 1em;
+            }
+            
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+            
+            .service-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .price {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="neon-glow"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" onclick="showPage('main')">TOSHDELUXE</div>
+                <nav>
+                    <a onclick="showPage('main')" class="active">Главная</a>
+                    <a onclick="showPage('courses')">Курсы</a>
+                    <a onclick="showPage('search')">Поиск</a>
+                    <a onclick="showPage('other')">Другое</a>
+                    <a onclick="showPage('contacts')">Контакты</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Главная страница -->
+        <div id="main-page" class="page active">
+            <div class="hero">
+                <h1>ПРОФЕССИОНАЛЬНЫЕ УСЛУГИ</h1>
+                <p>Качественные решения для ваших цифровых потребностей</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card" onclick="showPage('courses')" style="cursor: pointer;">
+                    <h3>🎓 КУРСЫ</h3>
+                    <div class="service-item">
+                        <span class="service-name">Разбор личных кейсов</span>
+                        <span class="price">от 10 USDT</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">Индивидуальное обучение</span>
+                        <span class="price">от 15 USDT</span>
+                    </div>
+                </div>
+                
+                <div class="service-card" onclick="showPage('search')" style="cursor: pointer;">
+                    <h3>🔍 ПОИСК ИНФОРМАЦИИ</h3>
+                    <div class="service-item">
+                        <span class="service-name">Поиск информации</span>
+                        <span class="price">от 30 USDT</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">Отслеживание активности</span>
+                        <span class="price">от 30 USDT</span>
+                    </div>
+                </div>
+                
+                <div class="service-card" onclick="showPage('other')" style="cursor: pointer;">
+                    <h3>⚡ ДРУГОЕ</h3>
+                    <div class="service-item">
+                        <span class="service-name">Удаление данных</span>
+                        <span class="price">от 30 USDT</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">DDoS защита</span>
+                        <span class="price">от 10 USDT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Страница курсов -->
+        <div id="courses-page" class="page">
+            <div class="hero">
+                <h1>КУРСЫ И ОБУЧЕНИЕ</h1>
+                <p>Профессиональное обучение цифровым навыкам</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🎓 ОБУЧАЮЩИЕ КУРСЫ</h3>
+                    <div class="service-item">
+                        <span class="service-name">Разбор личных кейсов</span>
+                        <span class="price">от 10 USDT/1000₽</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">Индивидуальное обучение/занятие</span>
+                        <span class="price">от 15 USDT/1500₽</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Страница поиска -->
+        <div id="search-page" class="page">
+            <div class="hero">
+                <h1>ПОИСК ИНФОРМАЦИИ</h1>
+                <p>Комплексный поиск и анализ данных</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🔍 ИНФОРМАЦИОННЫЕ УСЛУГИ</h3>
+                    <div class="service-item">
+                        <span class="service-name">Поиск инфы о объекте</span>
+                        <span class="price">от 30 USDT/3000₽</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">Отслеживание активности (web/dark)</span>
+                        <span class="price">от 30USDT/3000₽ / неделя</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">Расширенный поиск (30+ параметров)</span>
+                        <span class="price">от 40 USDT/4000₽</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Страница другое -->
+        <div id="other-page" class="page">
+            <div class="hero">
+                <h1>ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ</h1>
+                <p>Специализированные решения</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>⚡ СПЕЦУСЛУГИ</h3>
+                    <div class="service-item">
+                        <span class="service-name">Удаление данных из сети</span>
+                        <span class="price">от 30 USDT</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">Создание фейковой справки</span>
+                        <span class="price">от 30 USDT/3000₽</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">DDoS</span>
+                        <span class="price">от 10 USDT/1000₽</span>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-name">Защита</span>
+                        <span class="price">от 10 USDT/1000₽</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Страница контактов -->
+        <div id="contacts-page" class="page">
+            <div class="hero">
+                <h1>КОНТАКТЫ</h1>
+                <p>Свяжитесь с нами для заказа услуг</p>
+            </div>
+            
+            <div class="contacts-content">
+                <h2>📞 СВЯЗАТЬСЯ С НАМИ</h2>
+                <div class="contact-item">
+                    <strong>Email:</strong> 
+                    <a href="mailto:Toshdeluxe@proton.me">Toshdeluxe@proton.me</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Telegram:</strong> 
+                    <a href="https://t.me/Usereastik" target="_blank">@Usereastik</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Рабочие часы:</strong> 
+                    <span>24/7</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>© 2023 Toshdeluxe Services. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // Скрыть все страницы
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Показать выбранную страницу
+            document.getElementById(pageId + '-page').classList.add('active');
+            
+            // Обновить активную кнопку в навигации
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Найти и активировать соответствующую кнопку
+            const links = document.querySelectorAll('nav a');
+            for (let link of links) {
+                if (link.textContent.toLowerCase().includes(pageId) || 
+                    (pageId === 'main' && link.textContent === 'Главная')) {
+                    link.classList.add('active');
+                    break;
+                }
+            }
+            
+            // Обновить URL
+            const newUrl = window.location.origin + window.location.pathname + '#' + pageId;
+            window.history.pushState({}, '', newUrl);
+            
+            // Прокрутить к верху
+            window.scrollTo(0, 0);
+        }
+
+        // Обработка изменения хэша в URL
+        function handleHashChange() {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+                showPage(hash);
+            } else {
+                showPage('main');
+            }
+        }
+
+        // Инициализация при загрузке
+        window.addEventListener('load', function() {
+            handleHashChange();
+        });
+
+        // Обработка изменения хэша
+        window.addEventListener('hashchange', handleHashChange);
+    </script>
+</body>
+</html>
